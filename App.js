@@ -21,8 +21,8 @@ Mapbox.setAccessToken(accessToken);
 export default class App extends Component<{}> {
   state = {
     center: {
-      latitude: 40.72052634,
-      longitude: -73.97686958312988
+      latitude: 35.6911100,
+      longitude: -0.6416700
     },
     zoom: 11,
     userTrackingMode: Mapbox.userTrackingMode.none,
@@ -30,14 +30,10 @@ export default class App extends Component<{}> {
       coordinates: [40.72052634, -73.97686958312988],
       type: 'point',
       title: 'This is marker 1',
-      subtitle: 'It has a rightCalloutAccessory too',
-      rightCalloutAccessory: {
-        source: { uri: 'https://cldup.com/9Lp0EaBw5s.png' },
-        height: 25,
-        width: 25
-      },
-      annotationImage: {
-        source: { uri: 'https://cldup.com/CnRLZem9k9.png' },
+      subtitle: 'First marker',
+     
+     annotationImage: {
+        source: { uri: 'https://cldup.com/7NLZklp8zS.png' },
         height: 25,
         width: 25
       },
@@ -52,23 +48,17 @@ export default class App extends Component<{}> {
         height: 25,
         width: 25
       },
-      id: 'marker2'
+      id:'marker2'
     }, {
-      coordinates: [[40.76572150042782,-73.99429321289062],[40.743485405490695, -74.00218963623047],[40.728266950429735,-74.00218963623047],[40.728266950429735,-73.99154663085938],[40.73633186448861,-73.98983001708984],[40.74465591168391,-73.98914337158203],[40.749337730454826,-73.9870834350586]],
+        coordinates: [[35.642527,-0.6195367],[35.645073, -0.620567],[35.649907, -0.625147],[35.655099, -0.628173],[35.661274, -0.631898],[35.665747, -0.634656],[35.671308, -0.638055],[35.675890, -0.640978],[35.679869, -0.643400],[35.683525, -0.645584],[35.686919, -0.647665],[35.689398, -0.648733],[35.692409, -0.649929],[35.696735, -0.651635],[35.701405, -0.650095],[35.703662, -0.649205],[35.699933, -0.644795],[35.699728, -0.638529],[35.698663, -0.631094],[35.699123, -0.625643],[35.698077, -0.617739],[35.697088, -0.613259],[35.696883, -0.604928],[35.699924, -0.601232],[35.701967, -0.594237],[35.702011, -0.588744],[35.702268, -0.583605],[35.704058, -0.577650],[35.706219, -0.573053],[35.703366, -0.56994],[35.697158, -0.571151],[35.691164, -0.568838]],
       type: 'polyline',
-      strokeColor: '#00FB00',
-      strokeWidth: 4,
+      strokeColor: 'red',
+      strokeWidth: 3,
       strokeAlpha: .5,
-      id: 'foobar'
-    }, {
-      coordinates: [[40.749857912194386, -73.96820068359375], [40.741924698522055,-73.9735221862793], [40.735681504432264,-73.97523880004883], [40.7315190495212,-73.97438049316406], [40.729177554196376,-73.97180557250975], [40.72345355209305,-73.97438049316406], [40.719290332250544,-73.97455215454102], [40.71369559554873,-73.97729873657227], [40.71200407096382,-73.97850036621094], [40.71031250340588,-73.98691177368163], [40.71031250340588,-73.99154663085938]],
-      type: 'polygon',
-      fillAlpha: 1,
-      strokeColor: '#ffffff',
-      fillColor: '#0000ff',
-      id: 'zap'
+      id: 'polyline'
     }]
   };
+
 
   onRegionDidChange = (location) => {
     this.setState({ currentZoom: location.zoomLevel });
@@ -115,7 +105,7 @@ export default class App extends Component<{}> {
     this._offlineErrorSubscription.remove();
   }
 
-  addNewMarkers = () => {
+  /*addNewMarkers = () => {
     // Treat annotations as immutable and create a new one instead of using .push()
     this.setState({
       annotations: [ ...this.state.annotations, {
@@ -132,12 +122,39 @@ export default class App extends Component<{}> {
         'id': 'new-black-polygon'
       }]
     });
-  };
+  };*/
+  fillStations =()=> {
+  let Lat_Long = [[35.642527,-0.6195367,'Es Senia Université'],[35.645073, -0.620567,'es Senia sud'],[35.649907, -0.625147,'Senia contre'],[35.655099, -0.628173,'Moulay AEK'],[35.661274, -0.631898,'IGMO'],[35.665747, -0.634656,'Cité Volontaire ENSET'],[35.671308, -0.638055,'Lycée les Palmiers'],[35.675890, -0.640978,'Jardin Othmania'],[35.679869, -0.643400,'Cité Universitaire Hai El Badr'],[35.683525, -0.645584,'Sûreté de Wilaya '],[35.686919, -0.647665,'Palais de sports'],[35.689398, -0.648733,'Ghaouti'],[35.692409, -0.649929,'Medina Djadida '],[35.696735, -0.651635,'Tlemcen Houaha'],[35.701405, -0.650095,'Place Mokrani'],[35.703662, -0.649205,'Place 1er Novembre '],[35.699933, -0.644795,'Emir Abdelkader '],[35.699728, -0.638529,'Gare SNTF '],[35.698663, -0.631094,'1er Boulevard '],[35.699123, -0.625643,'Place Moulay '],[35.698077, -0.617739,'Maalem'],[35.697088, -0.613259,'Hammou Mokhtar Les Castors '],[35.696883, -0.604928,'Mosquée Ibn Badis '],[35.699924, -0.601232,'Palais de justice '],[35.701967, -0.594237,'Carrefour 3 Cliniques '],[35.702011, -0.588744,'Cité USTO '],[35.702268, -0.583605,'Hôpital 1er Novembre '],[35.704058, -0.577650,'Université USTO '],[35.706219, -0.573053,'USTO-Bifurcation '],[35.703366, -0.56994,'Yassmine '],[35.697158, -0.571151,'Hai Sabah '],[35.691164, -0.568838,'Gare Routière de Sidi Maarouf ']];
+  let table =[...this.state.annotations];
+  Lat_Long.map((item,index) => {
+  
+    
+     
+      table.push({ coordinates: [item[0],item[1]],
+        type: 'point',
+        title: item[2],
+        subtitle:item[0].toString() +' ' + item[1].toString(),
+        annotationImage: {
+        source: { uri: 'https://cldup.com/7NLZklp8zS.png' },
+        height: 25,
+        width: 25
+      },
+        id:item[2],
+        
+     })
+       this.setState({annotations:table});
+      
+}); }
 
+
+
+
+  
+/*
   updateMarker2 = () => {
     // Treat annotations as immutable and use .map() instead of changing the array
     this.setState({
-      annotations: this.state.annotations.map(annotation => {
+      annotations: this.state.annotations.map(annotacdtion => {
         if (annotation.id !== 'marker2') { return annotation; }
         return {
           coordinates: [40.714541341726175,-74.00579452514648],
@@ -160,9 +177,11 @@ export default class App extends Component<{}> {
       annotations: this.state.annotations.filter(a => a.id !== 'marker2')
     });
   };
-
+*/
   render() {
     StatusBar.setHidden(true);
+
+
     return (
       <View style={styles.container}>
         <MapView
@@ -178,12 +197,12 @@ export default class App extends Component<{}> {
           styleURL={Mapbox.mapStyles.dark}
           userTrackingMode={this.state.userTrackingMode}
           annotations={this.state.annotations}
-          annotationsAreImmutable
+        //  annotationsAreImmutable
           onChangeUserTrackingMode={this.onChangeUserTrackingMode}
           onRegionDidChange={this.onRegionDidChange}
           onRegionWillChange={this.onRegionWillChange}
-          onOpenAnnotation={this.onOpenAnnotation}
-          onRightAnnotationTapped={this.onRightAnnotationTapped}
+         // onOpenAnnotation={this.onOpenAnnotation}
+         // onRightAnnotationTapped={this.onRightAnnotationTapped}
           onUpdateUserLocation={this.onUpdateUserLocation}
           onLongPress={this.onLongPress}
           onTap={this.onTap}
@@ -196,8 +215,11 @@ export default class App extends Component<{}> {
   }
 
   _renderButtons() {
+
     return (
       <View>
+        <Text  onPress={this.fillStations}> blablabla </Text>
+     
         <Text onPress={() => this._map && this._map.setDirection(0)}>
           Set direction to 0
         </Text>
@@ -228,9 +250,7 @@ export default class App extends Component<{}> {
         <Text onPress={this.removeMarker2}>
           Remove marker2 annotation
         </Text>
-        <Text onPress={() => this.setState({ annotations: [] })}>
-          Remove all annotations
-        </Text>
+       
         <Text onPress={() => this._map && this._map.setVisibleCoordinateBounds(40.712, -74.227, 40.774, -74.125, 100, 0, 0, 0)}>
           Set visible bounds to 40.7, -74.2, 40.7, -74.1
         </Text>
